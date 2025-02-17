@@ -45,3 +45,7 @@ For left leg, T1 varies from 90 to 270; T2 and T3 vary from 0 to 180
 The front of the bot coincides with XY plane.
 
 Offset - 1 cm in x direction and 8.5 cm in z direction
+
+#Photo Gallery
+![Robotic Dog 1](https://github.com/user-attachments/assets/4d83a174-1096-4905-bac9-b160f455b128)
+
