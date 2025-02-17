@@ -202,7 +202,7 @@ ax_T1_l = plt.axes([0.1, 0.21, 0.2, 0.02])
 ax_T2_l = plt.axes([0.1, 0.18, 0.2, 0.02])
 ax_T3_l = plt.axes([0.1, 0.15, 0.2, 0.02])
 
-slider_T1_l = Slider(ax_T1_l, 'Front Left T1', -90, 90, valinit=T1_l, color='black')
+slider_T1_l = Slider(ax_T1_l, 'Front Left T1', 90, 270, valinit=T1_l, color='black')
 slider_T2_l = Slider(ax_T2_l, 'Front Left T2', 0, 180, valinit=T2_l, color='black')
 slider_T3_l = Slider(ax_T3_l, 'Front Left T3', 0, 180, valinit=T3_l, color='black')
 
@@ -218,7 +218,7 @@ ax_T1_l_b = plt.axes([0.1, 0.11, 0.2, 0.02])
 ax_T2_l_b = plt.axes([0.1, 0.08, 0.2, 0.02])
 ax_T3_l_b = plt.axes([0.1, 0.05, 0.2, 0.02])
 
-slider_T1_l_b = Slider(ax_T1_l_b, 'Back Left T1', -90, 90, valinit=T1_l_b, color='blue')
+slider_T1_l_b = Slider(ax_T1_l_b, 'Back Left T1', 90, 270, valinit=T1_l_b, color='blue')
 slider_T2_l_b = Slider(ax_T2_l_b, 'Back Left T2', 0, 180, valinit=T2_l_b, color='blue')
 slider_T3_l_b = Slider(ax_T3_l_b, 'Back Left T3', 0, 180, valinit=T3_l_b, color='blue')
 
