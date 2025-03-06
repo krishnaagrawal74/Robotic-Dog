@@ -49,3 +49,12 @@ Offset - 1 cm in x direction and 8.5 cm in z direction
 ## Photo Gallery
 ![Robotic Dog 1](https://github.com/user-attachments/assets/4d83a174-1096-4905-bac9-b160f455b128)
 
+For Right front leg,
+float x = x_centre - 1;
+float y = y_centre;
+float z = z_centre - 8.5;
+
+For Right rear leg,
+float x = x_centre - 1;
+float y = y_centre;
+float z = z_centre + 8.5;
