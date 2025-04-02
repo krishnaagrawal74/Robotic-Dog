@@ -6,7 +6,7 @@ Servo servo1;  // Base servo
 Servo servo2;  // Middle servo
 Servo servo3;  // End servo
 
-// Arm segment lengths
+// Arm segment lengthss
 const float a1 = 4.5;
 const float a2 = 6;
 const float a3 = 5.4;
@@ -19,7 +19,7 @@ float point_to_rad(float p1, float p2) {
   else if (p1 < 0 && p2 < 0) return atan(p2 / p1) + PI;
   else if (p1 > 0 && p2 < 0) return -fabs(atan(p2 / p1)) + 2 * PI;
   else if (p1 == 0 && p2 < 0) return 3 * PI / 2;
-  else return 3 * PI / 2;  // Edge case
+  else if (p1 == 0 && p2 ==0) return 3 * PI / 2;  // Edge case
 }
 
 // Inverse Kinematics with Rotation and Translation Matrices
@@ -39,7 +39,10 @@ void Inverse_kinematics(float x_centre, float y_centre, float z_centre) {
   float T1;
 
   Serial.println("Leg is left front");
-  T1 = point_to_rad(x,y) - acos(a1/A);
+  float alpha3 = acos(a1/A);
+  T1 = point_to_rad(x,y) - alpha3;
+  Serial.println(degrees(point_to_rad(x,y)));
+  Serial.println(degrees(alpha3));
 
   // Rotation and Translation Matrices
   float rot[4][4] = {
@@ -84,15 +87,23 @@ void Inverse_kinematics(float x_centre, float y_centre, float z_centre) {
   // Calculate T2 and T3
   float B = sqrt(ydash * ydash + zdash * zdash);
   float alpha1 = point_to_rad(ydash, zdash);
-  float beta1 = acos((B * B + a2 * a2 - a3 * a3) / (2 * B * a2));
+  float k = (B * B + a2 * a2 - a3 * a3) / (2 * B * a2);
+  if (k>1){
+    k = k-0.05;
+  }
+  float beta1 = acos(k);
   float T2 = alpha1 - beta1;
-  float beta2 = acos((a2 * a2 + a3 * a3 - B * B) / (2 * a2 * a3));
+  float k2 = (a2 * a2 + a3 * a3 - B * B) / (2 * a2 * a3);
+  if (k2< -1){
+    k2 = k2+0.098;
+  }
+  float beta2 = acos(k2);
   float T3 = PI - beta2;
 
   // Convert radians to degrees
-  T1 = degrees(T1)-5;
+  T1 = degrees(T1);
   T2 = degrees(T2);
-  T3 = degrees(T3)+6;
+  T3 = degrees(T3);
 
   Serial.print("T1 = ");
   Serial.println(T1);
