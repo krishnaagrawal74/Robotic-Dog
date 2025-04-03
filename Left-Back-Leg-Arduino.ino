@@ -38,7 +38,7 @@ void Inverse_kinematics(float x_centre, float y_centre, float z_centre) {
   float A = sqrt(x * x + y * y);
   float T1;
 
-  Serial.println("Leg is left front");
+  Serial.println("Leg is left back");
   T1 = point_to_rad(x,y) - acos(a1/A);
 
   // Rotation and Translation Matrices
@@ -84,9 +84,19 @@ void Inverse_kinematics(float x_centre, float y_centre, float z_centre) {
   // Calculate T2 and T3
   float B = sqrt(ydash * ydash + zdash * zdash);
   float alpha1 = point_to_rad(ydash, zdash);
-  float beta1 = acos((B * B + a2 * a2 - a3 * a3) / (2 * B * a2));
+  float k = (B * B + a2 * a2 - a3 * a3) / (2 * B * a2);
+  if (k >1){
+    k = k - 0.05 ;
+  }
+  Serial.println(k);
+  float beta1 = acos(k);
   float T2 = alpha1 - beta1;
-  float beta2 = acos((a2 * a2 + a3 * a3 - B * B) / (2 * a2 * a3));
+  float k2 = (a2 * a2 + a3 * a3 - B * B) / (2 * a2 * a3);
+  if (k2 <1){
+    k2 = k2 + 0.11;
+  }
+  Serial.println(k2);
+  float beta2 = acos(k2);
   float T3 = PI - beta2;
 
   // Convert radians to degrees
